@@ -48,8 +48,8 @@ class Part
     /**
      * Constructs a part.
      *
-     * @param Http $http The HTTP client.
-     * @param Tidal $tidal The TIDAL client.
+     * @param Http  $http       The HTTP client.
+     * @param Tidal $tidal      The TIDAL client.
      * @param array $attributes Attributes to fill.
      *
      * @return void
@@ -100,8 +100,8 @@ class Part
     /**
      * Handles dynamic set calls to the part.
      *
-     * @param string $key The key.
-     * @param mixed $value The value to set.
+     * @param string $key   The key.
+     * @param mixed  $value The value to set.
      *
      * @return void
      */

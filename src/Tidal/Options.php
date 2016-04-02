@@ -23,9 +23,9 @@ class Options
     /**
      * Builds a query URL.
      *
-     * @param array $baseOptions The base options.
+     * @param array $baseOptions  The base options.
      * @param array $extraOptions The extra options.
-     * @param Tidal $tidal The TIDAL client.
+     * @param Tidal $tidal        The TIDAL client.
      *
      * @return string The encoded options.
      */
@@ -41,7 +41,7 @@ class Options
      * Replaces placeholders in a string with variables.
      *
      * @param string $string The string work with.
-     * @param array $vars The options to fill in.
+     * @param array  $vars   The options to fill in.
      *
      * @return string The final string.
      */
