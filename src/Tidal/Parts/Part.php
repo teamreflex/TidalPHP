@@ -77,7 +77,7 @@ class Part
 	 */
 	public function __get($key)
 	{
-		$funcName = 'get'.Str::slug(ucfirst($key), '_').'Attribute';
+		$funcName = 'get'.Str::studly($key).'Attribute';
 
 		if (is_callable([$this, $funcName])) {
 			return $this->{$funcName}();
@@ -98,7 +98,7 @@ class Part
 	 */
 	public function __set($key, $value)
 	{
-		$funcName = 'set'.Str::slug(ucfirst($key), '_').'Attribute';
+		$funcName = 'set'.Str::studly($key).'Attribute';
 		
 		if (is_callable([$this, $funcName])) {
 			$this->attributes[$key] = $this->{$funcName}($value);
@@ -122,7 +122,7 @@ class Part
 	{
 		$atts = [];
 
-		foreach ($this->fillable as $key) {
+		foreach ($this->attributes as $key => $value) {
 			$atts[$key] = $this->__get($key);
 		}
 

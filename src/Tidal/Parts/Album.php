@@ -4,8 +4,12 @@ namespace Tidal\Parts;
 
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use React\Promise\Deferred;
+use Tidal\Endpoints;
+use Tidal\Options;
 use Tidal\Parts\Artist;
 use Tidal\Parts\Part;
+use Tidal\Parts\Track;
 
 class Album extends Part
 {
@@ -35,6 +39,19 @@ class Album extends Part
 	}
 
 	/**
+	 * Gets the cover URL attribute.
+	 *
+	 * @return string The cover URL.
+	 */
+	public function getCoverUrlAttribute($res = 1280)
+	{
+		return str_replace('-', '/', Options::replace(Endpoints::ART_URL, [
+			'key' => $this->cover,
+			'res' => $res,
+		]));
+	}
+
+	/**
 	 * Gets the artists attribute.
 	 *
 	 * @return Collection A collection of artists. 
@@ -56,5 +73,39 @@ class Album extends Part
 		}
 
 		return $new;
+	}
+
+	/**
+	 * Gets the albums tracks.
+	 *
+	 * @param array $options An array of options.
+	 * 
+	 * @return \React\Promise\Promise The albums tracks.
+	 */
+	public function getTracks(array $options = [])
+	{
+		$deferred = new Deferred();
+
+		$options = Options::buildOptions(Options::$defaultOptions, $options, $this->tidal);
+
+		$this->http->get(
+			Options::replace(Endpoints::ALBUM_TRACKS, ['id' => $this->id]).$options
+		)->then(function ($response) use ($deferred) {
+			$tracks = new Collection();
+
+			foreach ($response['items'] as $track) {
+				$tracks->push(new Track(
+					$this->http,
+					$this->tidal,
+					$track
+				));
+			}
+
+			$deferred->resolve($tracks);
+		}, function ($e) use ($deferred) {
+			$deferred->reject($e);
+		});
+
+		return $deferred->promise();
 	}
 }

@@ -116,11 +116,7 @@ class Tidal
 	 */
 	public function search(array $options)
 	{
-		$options = Options::buildOptions([
-			'types'  => 'artists,albums,tracks,videos,playlists',
-			'limit'  => -1,
-			'offset' => 0,
-		], $options, $this);
+		$options = Options::buildOptions(Options::$defaultOptions, $options, $this);
 
 		$deferred = new Deferred();
 

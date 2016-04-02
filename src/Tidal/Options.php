@@ -7,6 +7,13 @@ use Tidal\Tidal;
 class Options
 {
 	/**
+	 * The default options for queries.
+	 *
+	 * @var array Default options.
+	 */
+	public static $defaultOptions = ['limit' => 999, 'filter' => 'all', 'offset' => 0];
+
+	/**
 	 * Builds a query URL.
 	 *
 	 * @param array $baseOptions The base options.
