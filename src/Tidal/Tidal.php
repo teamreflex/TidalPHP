@@ -51,7 +51,7 @@ class Tidal
      * Creates a new TIDAL client.
      *
      * @param LoopInterface $loop The ReactPHP event loop.
-     * @param string $dns The DNS server to use.
+     * @param string        $dns  The DNS server to use.
      *
      * @return void
      */
@@ -69,7 +69,7 @@ class Tidal
     /**
      * Authenticates with the TIDAL servers.
      *
-     * @param string $email The Email to login with.
+     * @param string $email    The Email to login with.
      * @param string $password The password to login with.
      *
      * @return \React\Promise\Promise

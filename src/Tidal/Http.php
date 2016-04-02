@@ -24,8 +24,8 @@ class Http
     /**
      * Constructs a HTTP client wrapper.
      *
-     * @param \Clue\React\Buzz\Browser $browser The browser.
-     * @param array $userInfo Information about the user.
+     * @param \Clue\React\Buzz\Browser $browser  The browser.
+     * @param array                    $userInfo Information about the user.
      *
      * @return void
      */
